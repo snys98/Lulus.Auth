@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.6
+VisualStudioVersion = 15.0.27019.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lulus.Auth", "Lulus.Auth\Lulus.Auth.csproj", "{835C19AF-3E63-4059-9D65-D2CF0D2A2C4A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lulus.Auth", "Lulus.Auth\Lulus.Auth.csproj", "{2F0C0AA9-8B74-4C77-A299-EAB2E4C061C7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,12 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{835C19AF-3E63-4059-9D65-D2CF0D2A2C4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{835C19AF-3E63-4059-9D65-D2CF0D2A2C4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{835C19AF-3E63-4059-9D65-D2CF0D2A2C4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{835C19AF-3E63-4059-9D65-D2CF0D2A2C4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F0C0AA9-8B74-4C77-A299-EAB2E4C061C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F0C0AA9-8B74-4C77-A299-EAB2E4C061C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F0C0AA9-8B74-4C77-A299-EAB2E4C061C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F0C0AA9-8B74-4C77-A299-EAB2E4C061C7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {173AFF9F-A20C-4053-88F7-C39F139AA02B}
 	EndGlobalSection
 EndGlobal

@@ -8,7 +8,6 @@ using IdentityModel;
 using IdentityServer4;
 using IdentityServer4.Models;
 using IdentityServer4.Test;
-
 namespace Lulus.Auth
 {
     public class AuthConfig
@@ -17,22 +16,18 @@ namespace Lulus.Auth
         {
             new ApiResource("api1", "My API")
         };
-
         public static IEnumerable<Client> Clients { get; set; } = new List<Client>
         {
             new Client
             {
                 ClientId = "client",
-
                 // no interactive user, use the clientid/secret for authentication
                 AllowedGrantTypes = GrantTypes.ClientCredentials,
-
                 // secret for authentication
                 ClientSecrets =
                 {
                     new Secret("secret".Sha256())
                 },
-
                 // scopes that client has access to
                 AllowedScopes = {"api1"}
             },
@@ -41,13 +36,10 @@ namespace Lulus.Auth
                 ClientId = "mvc",
                 ClientName = "MVC Client",
                 AllowedGrantTypes = GrantTypes.Implicit,
-
                 // where to redirect to after login
                 RedirectUris = { "http://localhost:5002/signin-oidc" },
-
                 // where to redirect to after logout
                 PostLogoutRedirectUris = { "http://localhost:5002/signout-callback-oidc" },
-
                 AllowedScopes = new List<string>
                 {
                     IdentityServerConstants.StandardScopes.OpenId,
@@ -55,7 +47,6 @@ namespace Lulus.Auth
                 }
             }
         };
-
         public static List<TestUser> Users { get; set; } = new List<TestUser>
         {
             new TestUser
@@ -95,12 +86,6 @@ namespace Lulus.Auth
                     new Claim("location", "somewhere"),
                 }
             },
-        };
-
-        public static IEnumerable<IdentityResource> IdentityResources { get; } = new List<IdentityResource>
-        {
-            new IdentityResources.OpenId(),
-            new IdentityResources.Profile(),
         };
     }
 }

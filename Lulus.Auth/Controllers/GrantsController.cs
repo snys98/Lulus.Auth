@@ -1,29 +1,24 @@
-﻿// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
-
-
+﻿
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using IdentityServer4.Quickstart.UI;
 using IdentityServer4.Services;
 using IdentityServer4.Stores;
+using Lulus.Auth.ViewModels.Grants;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-
 namespace Lulus.Auth.Controllers
 {
     /// <summary>
     /// This sample controller allows a user to revoke grants given to clients
     /// </summary>
     [SecurityHeaders]
-    [Authorize(ActiveAuthenticationSchemes = IdentityServer4.IdentityServerConstants.DefaultCookieAuthenticationScheme)]
+    [Authorize(AuthenticationSchemes = IdentityServer4.IdentityServerConstants.DefaultCookieAuthenticationScheme)]
     public class GrantsController : Controller
     {
         private readonly IIdentityServerInteractionService _interaction;
         private readonly IClientStore _clients;
         private readonly IResourceStore _resources;
-
         public GrantsController(IIdentityServerInteractionService interaction,
             IClientStore clients,
             IResourceStore resources)
@@ -32,7 +27,6 @@ namespace Lulus.Auth.Controllers
             _clients = clients;
             _resources = resources;
         }
-
         /// <summary>
         /// Show list of grants
         /// </summary>
@@ -41,7 +35,6 @@ namespace Lulus.Auth.Controllers
         {
             return View("Index", await BuildViewModelAsync());
         }
-
         /// <summary>
         /// Handle postback to revoke a client
         /// </summary>
@@ -52,11 +45,9 @@ namespace Lulus.Auth.Controllers
             await _interaction.RevokeUserConsentAsync(clientId);
             return RedirectToAction("Index");
         }
-
         async Task<GrantsViewModel> BuildViewModelAsync()
         {
             var grants = await _interaction.GetAllUserConsentsAsync();
-
             var list = new List<GrantViewModel>();
             foreach(var grant in grants)
             {
@@ -64,7 +55,6 @@ namespace Lulus.Auth.Controllers
                 if (client != null)
                 {
                     var resources = await _resources.FindResourcesByScopeAsync(grant.Scopes);
-
                     var item = new GrantViewModel()
                     {
                         ClientId = client.ClientId,
@@ -76,11 +66,9 @@ namespace Lulus.Auth.Controllers
                         IdentityGrantNames = resources.IdentityResources.Select(x => x.DisplayName ?? x.Name).ToArray(),
                         ApiGrantNames = resources.ApiResources.Select(x => x.DisplayName ?? x.Name).ToArray(),
                     };
-
                     list.Add(item);
                 }
             }
-
             return new GrantsViewModel
             {
                 Grants = list

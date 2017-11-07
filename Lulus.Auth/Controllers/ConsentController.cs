@@ -1,24 +1,19 @@
-﻿// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
-
-
+﻿
 using System.Threading.Tasks;
-using IdentityServer4.Quickstart.UI;
 using IdentityServer4.Services;
 using IdentityServer4.Stores;
+using Lulus.Auth.ViewModels.Consent;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-
 namespace Lulus.Auth.Controllers
 {
     /// <summary>
-    /// This controller processes the consent UI
+    /// 用户授权相关，对应用户同意授权的中间跳转页
     /// </summary>
     [SecurityHeaders]
     public class ConsentController : Controller
     {
         private readonly ConsentService _consent;
-
         public ConsentController(
             IIdentityServerInteractionService interaction,
             IClientStore clientStore,
@@ -27,7 +22,6 @@ namespace Lulus.Auth.Controllers
         {
             _consent = new ConsentService(interaction, clientStore, resourceStore, logger);
         }
-
         /// <summary>
         /// Shows the consent screen
         /// </summary>
@@ -41,10 +35,8 @@ namespace Lulus.Auth.Controllers
             {
                 return View("Index", vm);
             }
-
             return View("Error");
         }
-
         /// <summary>
         /// Handles the consent screen postback
         /// </summary>
@@ -53,22 +45,18 @@ namespace Lulus.Auth.Controllers
         public async Task<IActionResult> Index(ConsentInputModel model)
         {
             var result = await _consent.ProcessConsent(model);
-
             if (result.IsRedirect)
             {
                 return Redirect(result.RedirectUri);
             }
-
             if (result.HasValidationError)
             {
                 ModelState.AddModelError("", result.ValidationError);
             }
-
             if (result.ShowView)
             {
                 return View("Index", result.ViewModel);
             }
-
             return View("Error");
         }
     }

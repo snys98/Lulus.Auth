@@ -1,10 +1,7 @@
-﻿// Copyright (c) Brock Allen & Dominick Baier. All rights reserved.
-// Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
-
+﻿
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-
 namespace Lulus.Auth.Controllers
 {
     public class SecurityHeadersAttribute : ActionFilterAttribute
@@ -22,7 +19,6 @@ namespace Lulus.Auth.Controllers
                 {
                     context.HttpContext.Response.Headers.Add("X-Frame-Options", "SAMEORIGIN");
                 }
-
                 var csp = "default-src 'self';";
                 // an example if you need client images to be displayed from twitter
                 //var csp = "default-src 'self'; img-src 'self' https://pbs.twimg.com";

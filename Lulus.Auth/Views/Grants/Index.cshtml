@@ -1,5 +1,5 @@
-﻿@model GrantsViewModel
-
+﻿@using Lulus.Auth.Quickstart.Grants
+@model Lulus.Auth.Quickstart.Grants.GrantsViewModel
 <div class="grants">
     <div class="row page-header">
         <div class="col-sm-10">
@@ -9,7 +9,6 @@
             <div>Below is the list of applications you have given access to and the names of the resources they have access to.</div>
         </div>
     </div>
-
     @if (Model.Grants.Any() == false)
     {
         <div class="row">
